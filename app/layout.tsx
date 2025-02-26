@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 import axios from "axios";
 import Error from "@/components/ui/error";
+import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,14 +34,14 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <title>ENEC 360</title>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <Providers>
           <Toaster />
           {serverIsOnline ? (
             <main>{children}</main>
           ) : (
             <Error message="Server is offline" icon={true} />
           )}
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
