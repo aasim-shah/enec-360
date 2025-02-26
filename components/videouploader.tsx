@@ -1,17 +1,19 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Hls from "hls.js";
+import { v4 as uuidv4 } from "uuid";
 
 const CHUNK_SIZE = 5 * 1024 * 1024; // 5MB
 
-const server = "http://localhost:5000";
+const server = process.env.NEXT_PUBLIC_BASE_URL;
 
 const VideoUploader = () => {
   const [progress, setProgress] = useState(0);
   const [convertToM3u8, setConvertToM3u8] = useState(false);
   const [playbackUrl, setPlaybackUrl] = useState("");
   const fileRef = useRef<File | null>(null);
-  const identifierRef = useRef(crypto.randomUUID());
+  const uniqueId = uuidv4();
+  const identifierRef = useRef(uniqueId);
 
   const splitFile = (file: File): Blob[] => {
     const chunks: Blob[] = [];

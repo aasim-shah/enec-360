@@ -65,6 +65,7 @@
 // };
 
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 const CHUNK_SIZE = 5 * 1024 * 1024; // 5MB
 const server = process.env.NEXT_PUBLIC_BASE_URL;
@@ -107,7 +108,8 @@ export const uploadVideo = async (
   setPlaybackUrl: (url: string) => void,
   onProgress?: (progress: number) => void
 ) => {
-  const identifier = crypto.randomUUID();
+  // const identifier = crypto.randomUUID();
+  const identifier = uuidv4();
   const chunks = splitFile(file);
   const totalChunks = chunks.length;
   let uploadedChunks = 0;
