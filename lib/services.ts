@@ -8,7 +8,6 @@ export const fetchAllVideos = async (lang: string) => {
         "Content-Type": "application/json",
         language: lang,
       },
-      withCredentials: true,
     });
     return response.data;
   } catch (error) {
@@ -19,9 +18,7 @@ export const fetchAllVideos = async (lang: string) => {
 //  pushign
 export const deleteVideo = async (id: string) => {
   try {
-    const response = await axios.delete(baseurl + `/api/videos/delete/${id}`, {
-      withCredentials: true,
-    });
+    const response = await axios.delete(baseurl + `/api/videos/delete/${id}`);
     return response.data;
   } catch (error) {
     console.error("Failed to delete video", error);
@@ -31,9 +28,7 @@ export const deleteVideo = async (id: string) => {
 
 export const addLanuage = async (data: any) => {
   try {
-    const response = await axios.post(baseurl + "/api/languages/", data, {
-      withCredentials: true,
-    });
+    const response = await axios.post(baseurl + "/api/languages/", data);
     return response.data;
   } catch (error) {
     throw error;
@@ -43,9 +38,7 @@ export const addLanuage = async (data: any) => {
 /// fetch all languages
 export const fetchAllLanguages = async () => {
   try {
-    const response = await axios.get(baseurl + "/api/languages", {
-      withCredentials: true,
-    });
+    const response = await axios.get(baseurl + "/api/languages");
     return response.data;
   } catch (error) {
     console.error("Failed to fetch languages", error);
@@ -56,9 +49,7 @@ export const fetchAllLanguages = async () => {
 // delete language
 export const deleteLanguage = async (id: string) => {
   try {
-    const response = await axios.delete(baseurl + `/api/languages/${id}`, {
-      withCredentials: true,
-    });
+    const response = await axios.delete(baseurl + `/api/languages/${id}`);
     return response.data;
   } catch (error) {
     console.error("Failed to delete language", error);
@@ -70,9 +61,7 @@ export const deleteLanguage = async (id: string) => {
 
 export const fetchStats = async () => {
   try {
-    const response = await axios.get(baseurl + "/api/videos/stats", {
-      withCredentials: true,
-    });
+    const response = await axios.get(baseurl + "/api/videos/stats");
     return response.data;
   } catch (error) {
     console.error("Failed to fetch stats", error);
