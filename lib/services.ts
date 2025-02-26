@@ -15,6 +15,7 @@ export const fetchAllVideos = async (lang: string) => {
   }
 };
 
+//  pushign
 export const deleteVideo = async (id: string) => {
   try {
     const response = await axios.delete(baseurl + `/api/videos/delete/${id}`);
