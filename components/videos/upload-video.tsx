@@ -39,6 +39,7 @@ import { fetchAllLanguages } from "@/lib/services";
 import { Language } from "../languages/languages-table";
 import { Switch } from "../ui/switch";
 import { UploadProgressBar } from "../progress-bar";
+import { toast } from "sonner";
 
 const serverURL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -112,11 +113,19 @@ export function AddVideoDialog({
           console.log({ finalizeUpload });
         }
       } catch (error) {
-        console.error("Upload failed:", error);
+        if (axios.isAxiosError(error) && error.response) {
+          setIsUploading(false);
+          setProgress(0);
+          console.log({ error });
+          toast.error(
+            `Upload failed  :   ${error.response.data.errors[0].message}`
+          );
+        } else {
+          toast.error("Upload failed 3");
+        }
       }
     } catch (error) {
       console.error("Upload failed", error);
-      alert("Upload failed");
     }
   }
   useEffect(() => {
