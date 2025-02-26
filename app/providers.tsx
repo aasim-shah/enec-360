@@ -5,7 +5,7 @@ import React from "react";
 const Providers = ({ children }: any) => {
   return (
     <div>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
         {children}
       </ThemeProvider>
     </div>
