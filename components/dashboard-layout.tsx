@@ -1,14 +1,18 @@
-interface DashboardLayoutProps {
-  children: React.ReactNode;
-}
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { ThemeToggle } from "./theme-toggle";
 
-import { Sidebar } from './sidebar';
-
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen">
-      <Sidebar />
-      <main className="flex-1 overflow-y-auto p-8">{children}</main>
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <main className="flex-1 h-full mx-4 md:mx-8">
+        <div className="py-3 border-b mb-5 flex justify-between items-center">
+          <SidebarTrigger />
+          <ThemeToggle />
+        </div>
+        {children}
+      </main>
+    </SidebarProvider>
   );
 }
